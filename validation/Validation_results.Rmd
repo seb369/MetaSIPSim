@@ -1,0 +1,134 @@
+---
+title: "metaSIPSim validation results"
+author: "Sam Barnett"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+## Introduction
+This notebook takes the metaSIPSim, SIPSim, and empirical results from the validation simulations and makes nice publication quality figures.
+
+```{r}
+# Data handling
+library(dplyr)
+# Plotting
+library(ggplot2)
+
+baseDir = "/home/sam/data/SIPSim2_data/dev/validation"
+
+## This is just a function for getting the legends for graphs. This will be used when making plots for publication.
+g_legend<-function(a.gplot){
+  tmp <- ggplot_gtable(ggplot_build(a.gplot))
+  leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
+  legend <- tmp$grobs[[leg]]
+  return(legend)}
+```
+
+Import the datasets from each experiment
+```{r}
+# Add shortened names because they are really long
+names.short = data.frame(taxon_name = c("Methanosarcina_barkeri_MS", "Methylobacterium_extorquens_AM1", 
+                                        "Escherichia_coli_K12", "Pseudomonas_aeruginosa_PAO1",
+                                        "Synechococcus_sp_WH7803"),
+                         Sp = c("M. barkeri MS", "M. extorquens AM1", 
+                                "E. coli K12", "P. aeruginosa PAO1",
+                                "Synechococcus sp. WH7803"))
+
+alldata.df = data.frame()
+for (study in c("Lueders2004", "Buckley2007", "Wawrik2009")){
+  alldata.df = rbind(alldata.df, read.table(paste(baseDir, study, "DNA_conc_all_sets.txt", sep="/"), header = TRUE))
+}
+
+alldata.df = mutate(alldata.df, 
+                    Label = ifelse(Isotope %in% c("13C", "15N"), "Labeled", "Unlabeled"),
+                    reference = gsub("_", " ", taxon_name)) %>%
+  left_join(names.short, by="taxon_name")
+
+alldata.df$data_type = factor(alldata.df$data_type, levels = c("empirical", "metaSIPSim", "SIPSim"))
+alldata.df$Study = factor(alldata.df$Study, levels = c("Lueders2004", "Buckley2007", "Wawrik2009"))
+alldata.df$Label = factor(alldata.df$Label, levels = c("Unlabeled", "Labeled"))
+alldata.df$Isotope = factor(alldata.df$Isotope, levels = c("12C", "13C", "14N", "15N"))
+
+```
+
+## Plot data
+Make a nice plot that encompasses all the data that is easy to understand and shows the similarities or differences between simulations and empirical data.
+
+```{r, fig.height=6.69291, fig.width=6.69291}
+Lueders.plot = ggplot(data=alldata.df[alldata.df$Study == "Lueders2004",], aes(x=BD, y=Ratio_of_maximum, color=Sp, linetype=data_type)) +
+  geom_line() +
+  scale_linetype_manual(values = c(metaSIPSim = 2, empirical = 1, SIPSim = 3)) +
+  scale_color_manual(values = c("black", "grey"), guide = FALSE) +
+  scale_x_continuous(breaks=c(1.68, 1.73, 1.78), limits = c(1.68, 1.78)) +
+  labs(x=NULL, y=NULL, color=NULL, linetype=NULL) +
+  theme_bw() +
+  theme(legend.position = "top",
+        legend.text = element_text(size=12),
+        panel.spacing = unit(2, "lines")) +
+  facet_grid(~Isotope)
+datatype.leg = g_legend(Lueders.plot)
+
+Lueders.plot = Lueders.plot + 
+  scale_linetype_manual(values = c(metaSIPSim = 2, empirical = 1, SIPSim = 3), guide = FALSE) +
+  scale_color_manual(values = c("black", "grey")) +
+  theme(legend.position = "right",
+        legend.text = element_text(size=12, face = "italic"),
+        axis.text = element_text(size=12),
+        strip.text.x = element_text(size=12))
+Lueders.leg = g_legend(Lueders.plot)
+Lueders.plot = Lueders.plot + theme(legend.position = "none")
+
+Buckley.plot = ggplot(data=alldata.df[alldata.df$Study == "Buckley2007",], aes(x=BD, y=Ratio_of_maximum, color=Sp, linetype=data_type)) +
+  geom_line() +
+  scale_linetype_manual(values = c(metaSIPSim = 2, empirical = 1, SIPSim = 3), guide = FALSE) +
+  scale_color_manual(values = c("black", "grey")) +
+  scale_x_continuous(breaks=c(1.68, 1.73, 1.78), limits = c(1.68, 1.78)) +
+  labs(x=NULL, y=NULL, color=NULL, linetype=NULL) +
+  theme_bw() +
+  theme(legend.text = element_text(size=12, face = "italic"),
+        axis.text = element_text(size=12),
+        strip.text.x = element_text(size=12),
+        panel.spacing = unit(2, "lines")) +
+  facet_grid(~Isotope)
+Buckley.leg = g_legend(Buckley.plot)
+Buckley.plot = Buckley.plot + theme(legend.position = "none")
+
+
+Wawrik.plot = ggplot(data=alldata.df[alldata.df$Study == "Wawrik2009",], aes(x=BD, y=Ratio_of_maximum, color=Sp, linetype=data_type)) +
+  geom_line() +
+  scale_linetype_manual(values = c(metaSIPSim = 2, empirical = 1, SIPSim = 3), guide = FALSE) +
+  scale_color_manual(values = c("black", "grey")) +
+  scale_x_continuous(breaks=c(1.68, 1.73, 1.78), limits = c(1.68, 1.78)) +
+  labs(x=NULL, y=NULL, color=NULL, linetype=NULL) +
+  theme_bw() +
+  theme(legend.text = element_text(size=12, face = "italic"),
+        axis.text = element_text(size=12),
+        strip.text.x = element_text(size=12),
+        panel.spacing = unit(2, "lines")) +
+  facet_grid(~Isotope)
+Wawrik.leg = g_legend(Wawrik.plot)
+Wawrik.plot = Wawrik.plot + theme(legend.position = "none")
+
+line.plots = cowplot::plot_grid(datatype.leg, Lueders.plot, Buckley.plot, Wawrik.plot, 
+                                labels = c("", "A", "B", "C"), align = "v", ncol=1, rel_heights = c(0.2, 1, 1, 1))
+# Add common axis labeles
+y.axis = grid::textGrob("Ratio of maximum DNA concentration", gp=grid::gpar(fontface="bold", fontsize=12), rot=90)
+x.axis = grid::textGrob("Fraction buoyant density (g/ml)", gp=grid::gpar(fontface="bold", fontsize=12))
+line.plots = gridExtra::arrangeGrob(line.plots, left = y.axis, bottom = x.axis)
+
+
+leg.plots = cowplot::plot_grid(Lueders.leg, Buckley.leg, Wawrik.leg, ncol=1, align = "v")
+
+val.plots = cowplot::plot_grid(line.plots, leg.plots, ncol=2, rel_widths = c(1, 0.7))
+
+ggsave(plot=val.plots, file="/home/sam/data/SIPSim2_data/RealWorld_study3/figures/fig1.tiff",
+       width=170, height=170, units="mm", device="tiff")
+
+val.plots
+```
+
+
+

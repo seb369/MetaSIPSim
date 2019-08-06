@@ -1,6 +1,6 @@
 # make_reads.py
 ## Writen by Samuel Barnett
-## This file contains the function for finding BD of DNA fragments and generating sequencing reads from these fragments to be used in conjunction with SIPSim_metagenome.
+## This file contains the function for generating sequencing reads from DNA fragments to be used in conjunction with SIPSim_metagenome.py and nonSIP_metagenome.py.
 
 from scipy.stats import norm as normdist
 import random

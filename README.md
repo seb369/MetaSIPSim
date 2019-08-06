@@ -41,7 +41,7 @@ To install MetaSIPSim, simply clone this repo. You can then call the MetaSIPSim 
 ## Simulating datasets
 
 ### Metagenome Simulations
-For both SIPSim_metagenome.py and nonSIP_metagenome.py, input is a configuration file containing paths to input files or directories, experimental parameters including gradient variables, and sequencing variables. For a more thorough description of the configuration file, please see MetaSIPSim_config.pdf. This same configuration file can be used for both simulations however the gradient parameters are not used for nonSIP_metagenome.py
+For both SIPSim_metagenome.py and nonSIP_metagenome.py, input is a configuration file containing paths to input files or directories, experimental parameters including gradient variables, and sequencing variables. For a more thorough description of the configuration file, please see the (manual)[https://github.com/seb369/MetaSIPSim/MetaSIPSim_manual.pdf]. This same configuration file can be used for both simulations however the gradient parameters are not used for nonSIP_metagenome.py
 
 Once the configuration file is generated, you can run these scripts by running:
 
@@ -65,7 +65,13 @@ This script requires the following inputs:
 
 ## Tutorials
 
-example_simulation.ipynb contains a simple example for simulating metagenomic-SIP libraries as well as conventional shotgun libraries using the same parameters. For more in depth examples you can also check out the validation notebooks or the case study scripts.
+For a basic example of using MetaSIPSim, check out:
+* [example_simulation.ipynb](https://github.com/seb369/MetaSIPSim/example/example_simulation.ipynb): A simple example for simulating metagenomic-SIP libraries as well as conventional shotgun libraries.
+* [example_config.cfg](https://github.com/seb369/MetaSIPSim/example/example_config.cfg): An example configuration file. For more info on each parameter included, check out the (manual)[https://github.com/seb369/MetaSIPSim/MetaSIPSim_manual.pdf].
+
+For more in depth examples you can also check out:
+* [Validation](https://github.com/seb369/MetaSIPSim/validation): The notebooks for running the validation of MetaSIPSim against empirical data. These are also fairly simple yet show a good example for using MetaSIPSim with real experimental parameters.
+* [Case study](https://github.com/seb369/MetaSIPSim/case_study): The notebooks for running the case study simulations used in the paper (LINK). These are complex examples using simulated bacterial communities.
 
 ## Citation
 TBD
@@ -89,5 +95,6 @@ The script for converting read library files from fasta to fastq format relies h
 Gourlé H, Karlsson-Lindsjö O, Hayer J, Bongcam-Rudloff E. Simulating Illumina data with InSilicoSeq. Bioinformatics 2018;35(3):521-522. doi: [10.1093/bioinformatics/bty630](https://doi.org/10.1093/bioinformatics/bty630)
 
 ## License
-TBD
+
+MetaSIPSim is under an MIT license. For more information check out [LICENSE](https://github.com/seb369/MetaSIPSim/LICENSE).
 

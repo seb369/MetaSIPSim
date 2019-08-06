@@ -96,5 +96,5 @@ Gourlé H, Karlsson-Lindsjö O, Hayer J, Bongcam-Rudloff E. Simulating Illumina 
 
 ## License
 
-MetaSIPSim is under an MIT license. For more information check out [LICENSE](https://github.com/seb369/MetaSIPSim/LICENSE).
+MetaSIPSim is under an MIT license. For more information check out [LICENSE](https://github.com/seb369/MetaSIPSim/blob/master/LICENSE).
 

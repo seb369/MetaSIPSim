@@ -4,8 +4,8 @@
 ## Here we take the fasta files generated with MetaSIPSim and convert them into fastq files
 ## complete with sequencing errors and quality scores. Error and quality based on error models.
 ## Error models as well as some code and functions are taken from InSilicoSeq:
-### Hadrien Gourlé, Oskar Karlsson-Lindsjö, Juliette Hayer, Erik Bongcam-Rudloff (2019)
-### Simulating Illumina metagenomic data with InSilicoSeq. Bioinformatics, 35,3:521–522,
+### Hadrien Gourle, Oskar Karlsson-Lindsjo, Juliette Hayer, Erik Bongcam-Rudloff (2019)
+### Simulating Illumina metagenomic data with InSilicoSeq. Bioinformatics, 35,3:521-522,
 ### https://doi.org/10.1093/bioinformatics/bty630
 
 import os

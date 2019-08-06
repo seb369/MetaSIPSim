@@ -1,4 +1,4 @@
-# Brief explination of each file in SIPSim_metagenome/bin/
+# Brief explination of each file in MetaSIPSim/bin/
 
 ## Executable scripts
 SIPSim_metagenome.py: This file contains the main script for simulating metagenomic-SIP datasets. 

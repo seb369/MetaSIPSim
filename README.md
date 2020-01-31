@@ -74,10 +74,12 @@ For more in depth examples you can also check out:
 * [Case study](https://github.com/seb369/MetaSIPSim/tree/master/case_study): The notebooks for running the case study simulations used in the paper (LINK). These are complex examples using simulated bacterial communities.
 
 ## Citation
-TBD
+Barnett, S.E., Buckley, D.H. Simulating metagenomic stable isotope probing datasets with MetaSIPSim.
+BMC Bioinformatics 21, 37 (2020). https://doi.org/10.1186/s12859-020-3372-6
 
 ## Versions
 
+* **1.0.0:** Published version with new citation and fixed progress output for non-SIP metagenome simulation.
 * **0.1.0:** Initial commit of development version.
 
 ## Acknowledgements:

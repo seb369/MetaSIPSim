@@ -177,11 +177,11 @@ with open(logfile, 'w') as log:
 #### Simulation endpoint ("read_sequence", "read_list", or "fragment_list")
 endpoint = str(config.get('Other', 'endpoint'))
 if endpoint == 'read_sequences':
-    outtext = 'You have chosen to get sequences of simulated, sequenced SIP metagenome reads.'
+    outtext = 'You have chosen to get sequences of simulated, sequenced non-SIP metagenome reads.'
 elif endpoint == 'read_list':
-    outtext = 'You have chosen to get an list of simulated, sequenced SIP metagenome reads.'
+    outtext = 'You have chosen to get an list of simulated, sequenced non-SIP metagenome reads.'
 elif endpoint == 'fragment_list':
-    outtext = 'You have chosen to get an list of simulated SIP metagenome fragments with adjusted buoyant densities.'
+    outtext = 'You have chosen to get an list of simulated non-SIP metagenome fragments with adjusted buoyant densities.'
 else:
     sys.exit('You must select "read_sequences", "read_list", or "fragment_list" in the configuration file.')
 print outtext

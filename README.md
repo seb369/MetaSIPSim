@@ -80,6 +80,7 @@ BMC Bioinformatics 21, 37 (2020). https://doi.org/10.1186/s12859-020-3372-6
 
 ## Versions
 
+* **1.0.1:** Fixed issue where NaN abundances produced due to very short fragments were preventing read generation. See line 573 in SIPSim_metagenome.py and line 400 in nonSIP_metagenome.py.
 * **1.0.0:** Published version with new citation and fixed progress output for non-SIP metagenome simulation.
 * **0.1.0:** Initial commit of development version.
 

@@ -397,6 +397,7 @@ for lib in lib_list:
                 sub_df = pd.read_csv(frag_outfile_name, sep='\t')
                 # Get relative abundance of all potential reads from all fractions
                 sub_df['abundance'] = (sub_df['abundance']*sub_df['fragment_length'])/(2*max_read_length)
+                sub_df.dropna(subset=['abundance'], inplace=True)
                 total_abundance = sum(sub_df['abundance'])
                 sub_df['abundance'] = sub_df['abundance']/total_abundance
                 # Selecting reads based on relative abundance estimate
